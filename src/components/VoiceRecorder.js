@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import mic from "../microphone.svg";
 
 const VoiceRecorder = () => {
   const [message, setMessage] = useState("");
@@ -29,7 +30,7 @@ const VoiceRecorder = () => {
       matchInterim: true,
     },
     {
-      command: "Beijingg",
+      command: "Beijing",
       callback: (command, spokenPhrase, similarityRatio) =>
         setMessage(
           `${command} and ${spokenPhrase} are ${similarityRatio * 100}% similar`
@@ -53,11 +54,28 @@ const VoiceRecorder = () => {
 
   return (
     <div>
-      <button onClick={SpeechRecognition.startListening}>Start</button>
+      <button
+        style={{
+          background: "transparent",
+          border: "none",
+          position: "absolute",
+          top: "60%",
+          left: "46%",
+        }}
+        onClick={SpeechRecognition.startListening}
+      >
+        <img
+          style={{
+            height: "50px",
+          }}
+          src={mic}
+          alt="Mic"
+        />
+      </button>
       <button onClick={SpeechRecognition.stopListening}>Stop</button>
       <button onClick={resetTranscript}>Reset</button>
-      <p>{transcript}</p>
-      <p>{message}</p>
+      <p>you said: {transcript}</p>
+      <p>my response: {message}</p>
     </div>
   );
 };

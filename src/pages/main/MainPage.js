@@ -10,16 +10,7 @@ const MainPage = () => {
     <div>
       <div className="welcome">Welcome to your VirtualAssistant</div>
       <VoiceRecorder />
-      <img
-        style={{
-          height: "50px",
-          position: "absolute",
-          top: "60%",
-          left: "46%",
-        }}
-        src={mic}
-        alt="Mic"
-      />
+
       <img
         style={{
           height: "50px",
