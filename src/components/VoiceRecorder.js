@@ -29,7 +29,7 @@ const VoiceRecorder = () => {
       matchInterim: true,
     },
     {
-      command: "Beijing",
+      command: "Beijingg",
       callback: (command, spokenPhrase, similarityRatio) =>
         setMessage(
           `${command} and ${spokenPhrase} are ${similarityRatio * 100}% similar`
