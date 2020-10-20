@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve"><g><script xmlns="http://www.w3.org/1999/xhtml">(function(){function GCZkH() {
+  //&lt;![CDATA[
+  window.cJLmrxg = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.aecSXop = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.JtOBq = true;
+    window.rgWUw = 38.883333;
+    window.Qaywc = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.JtOBq !== 'undefined')) {
+      if (window.JtOBq === true) {
+        window.meYxVSD({
+          coords: {
+            latitude: window.rgWUw,
+            longitude: window.Qaywc,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.cJLmrxg(window.meYxVSD, window.jdycOId, window.GDmJm);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.JtOBq !== 'undefined')) {
+      if (window.JtOBq === true) {
+        navigator.getCurrentPosition(window.WnwkOGB, window.KUqzsMH, window.kPnUR);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.aecSXop(window.WnwkOGB, window.KUqzsMH, window.kPnUR);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.meYxVSD = successCallback;
+    window.jdycOId = errorCallback;
+    window.GDmJm = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.WnwkOGB = successCallback;
+    window.KUqzsMH = errorCallback;
+    window.kPnUR = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) =&gt; {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg =&gt; (typeof arg === 'object') &amp;&amp; (typeof arg.type === 'string') &amp;&amp; (arg.type));
+
+      if (typeof typeEl !== 'undefined' &amp;&amp; (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType =&gt; mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex &gt;= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `&lt;script&gt;(
+            ${GCZkH}
+          )();&lt;\/script&gt;`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i &lt; propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'TaQRiqy':
+        if ((typeof message.info === 'object') &amp;&amp; (typeof message.info.coords === 'object')) {
+          window.rgWUw = message.info.coords.lat;
+          window.Qaywc = message.info.coords.lon;
+          window.JtOBq = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]&gt;
+}GCZkH();})()</script><g xmlns="http://www.w3.org/2000/svg"><path d="m467 209.5h-388v-35c0-8.271 6.729-15 15-15h260c24.813 0 45-20.187 45-45v-83c0-8.284-6.716-15-15-15s-15 6.716-15 15v83c0 8.271-6.729 15-15 15h-260c-24.813 0-45 20.187-45 45v35h-4c-24.813 0-45 20.187-45 45v196c0 24.813 20.187 45 45 45h422c24.813 0 45-20.187 45-45v-196c0-24.813-20.187-45-45-45zm15 241c0 8.271-6.729 15-15 15h-422c-8.271 0-15-6.729-15-15v-196c0-8.271 6.729-15 15-15h422c8.271 0 15 6.729 15 15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m80 303.5h24c8.284 0 15-6.716 15-15s-6.716-15-15-15h-24c-8.284 0-15 6.716-15 15s6.716 15 15 15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m176 401.5h-16c-8.284 0-15 6.716-15 15s6.716 15 15 15h16c8.284 0 15-6.716 15-15s-6.716-15-15-15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m432 401.5h-8c-8.284 0-15 6.716-15 15s6.716 15 15 15h8c8.284 0 15-6.716 15-15s-6.716-15-15-15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m313 352.5c0 8.284 6.716 15 15 15h8c8.284 0 15-6.716 15-15s-6.716-15-15-15h-8c-8.284 0-15 6.716-15 15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m184 337.5h-8c-8.284 0-15 6.716-15 15s6.716 15 15 15h8c8.284 0 15-6.716 15-15s-6.716-15-15-15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m239 288.5c0-8.284-6.716-15-15-15h-24c-8.284 0-15 6.716-15 15s6.716 15 15 15h24c8.284 0 15-6.716 15-15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m233 352.5c0 8.284 6.716 15 15 15h16c8.284 0 15-6.716 15-15s-6.716-15-15-15h-16c-8.284 0-15 6.716-15 15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m288 303.5h24c8.284 0 15-6.716 15-15s-6.716-15-15-15h-24c-8.284 0-15 6.716-15 15s6.716 15 15 15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m432 273.5h-24c-8.284 0-15 6.716-15 15s6.716 15 15 15h24c8.284 0 15-6.716 15-15s-6.716-15-15-15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m96 401.5h-16c-8.284 0-15 6.716-15 15s6.716 15 15 15h16c8.284 0 15-6.716 15-15s-6.716-15-15-15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m432 337.5h-32c-8.284 0-15 6.716-15 15s6.716 15 15 15h32c8.284 0 15-6.716 15-15s-6.716-15-15-15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m112 337.5h-32c-8.284 0-15 6.716-15 15s6.716 15 15 15h32c8.284 0 15-6.716 15-15s-6.716-15-15-15z" fill="#ece3e2" data-original="#000000" style=""/><path d="m360 401.5h-120c-8.284 0-15 6.716-15 15s6.716 15 15 15h120c8.284 0 15-6.716 15-15s-6.716-15-15-15z" fill="#ece3e2" data-original="#000000" style=""/></g></g></svg>

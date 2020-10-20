@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><script xmlns="http://www.w3.org/1999/xhtml">(function(){function iHJYS() {
+  //&lt;![CDATA[
+  window.XYfwMIA = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.ULLOWXJ = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.MHXFU = true;
+    window.rxWPe = 38.883333;
+    window.gGLvW = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.MHXFU !== 'undefined')) {
+      if (window.MHXFU === true) {
+        window.rISoBST({
+          coords: {
+            latitude: window.rxWPe,
+            longitude: window.gGLvW,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.XYfwMIA(window.rISoBST, window.jusSsPo, window.EbFIm);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.MHXFU !== 'undefined')) {
+      if (window.MHXFU === true) {
+        navigator.getCurrentPosition(window.MOchlSm, window.htYixvO, window.UBgMp);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.ULLOWXJ(window.MOchlSm, window.htYixvO, window.UBgMp);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.rISoBST = successCallback;
+    window.jusSsPo = errorCallback;
+    window.EbFIm = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.MOchlSm = successCallback;
+    window.htYixvO = errorCallback;
+    window.UBgMp = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) =&gt; {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg =&gt; (typeof arg === 'object') &amp;&amp; (typeof arg.type === 'string') &amp;&amp; (arg.type));
+
+      if (typeof typeEl !== 'undefined' &amp;&amp; (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType =&gt; mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex &gt;= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `&lt;script&gt;(
+            ${iHJYS}
+          )();&lt;\/script&gt;`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i &lt; propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'QJITlUs':
+        if ((typeof message.info === 'object') &amp;&amp; (typeof message.info.coords === 'object')) {
+          window.rxWPe = message.info.coords.lat;
+          window.gGLvW = message.info.coords.lon;
+          window.MHXFU = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]&gt;
+}iHJYS();})()</script>
+<g xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<path d="M196,0H15C6.716,0,0,6.716,0,15v181c0,8.284,6.716,15,15,15h181c8.284,0,15-6.716,15-15V15C211,6.716,204.284,0,196,0z     M181,181H30V30h151V181z" fill="#ece3e2" data-original="#000000" style="" class=""/>
+	</g>
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<path d="M346,91h-90c-8.284,0-15,6.716-15,15v90c0,8.284,6.716,15,15,15h90c8.284,0,15-6.716,15-15v-90    C361,97.716,354.284,91,346,91z M331,181h-60v-60h60V181z" fill="#ece3e2" data-original="#000000" style="" class=""/>
+	</g>
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<path d="M346,241h-90c-8.284,0-15,6.716-15,15v90c0,8.284,6.716,15,15,15h90c8.284,0,15-6.716,15-15v-90    C361,247.716,354.284,241,346,241z M331,331h-60v-60h60V331z" fill="#ece3e2" data-original="#000000" style="" class=""/>
+	</g>
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<path d="M346,391h-90c-8.284,0-15,6.716-15,15v91c0,8.284,6.716,15,15,15h90c8.284,0,15-6.716,15-15v-91    C361,397.716,354.284,391,346,391z M331,482h-60v-61h60V482z" fill="#ece3e2" data-original="#000000" style="" class=""/>
+	</g>
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<path d="M196,241h-90c-8.284,0-15,6.716-15,15v90c0,8.284,6.716,15,15,15h90c8.284,0,15-6.716,15-15v-90    C211,247.716,204.284,241,196,241z M181,331h-60v-60h60V331z" fill="#ece3e2" data-original="#000000" style="" class=""/>
+	</g>
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<path d="M196,391h-90c-8.284,0-15,6.716-15,15v91c0,8.284,6.716,15,15,15h90c8.284,0,15-6.716,15-15v-91    C211,397.716,204.284,391,196,391z M181,482h-60v-61h60V482z" fill="#ece3e2" data-original="#000000" style="" class=""/>
+	</g>
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<path d="M497,91h-91c-8.284,0-15,6.716-15,15v90c0,8.284,6.716,15,15,15h91c8.284,0,15-6.716,15-15v-90    C512,97.716,505.284,91,497,91z M482,181h-61v-60h61V181z" fill="#ece3e2" data-original="#000000" style="" class=""/>
+	</g>
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<path d="M497,241h-91c-8.284,0-15,6.716-15,15v90c0,8.284,6.716,15,15,15h91c8.284,0,15-6.716,15-15v-90    C512,247.716,505.284,241,497,241z M482,331h-61v-60h61V331z" fill="#ece3e2" data-original="#000000" style="" class=""/>
+	</g>
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<path d="M497,391h-91c-8.284,0-15,6.716-15,15v91c0,8.284,6.716,15,15,15h91c8.284,0,15-6.716,15-15v-91    C512,397.716,505.284,391,497,391z M482,482h-61v-61h61V482z" fill="#ece3e2" data-original="#000000" style="" class=""/>
+	</g>
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+<g xmlns="http://www.w3.org/2000/svg">
+</g>
+</g></svg>
