@@ -127,8 +127,16 @@ const TextCommandReader = () => {
           alt="Keyboard"
         />
       </button>
-      <p>you wrote something</p>
-      <p>my response: {message}</p>
+      <p style={{
+          position: "absolute",
+          top: "45%",
+          left: "20%",
+        }}>to write me, click to keyboard icon</p>
+      <p style={{
+          position: "absolute",
+          top: "50%",
+          left: "20%",
+        }}>my response: {message}</p>
       <Writing />
     </div>
   );

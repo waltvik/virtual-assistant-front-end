@@ -1,5 +1,5 @@
 import React from "react";
-import "./main.css";
+//import "./main.css";
 import mic from "../../microphone.svg";
 import keyboard from "../../keyboard.svg";
 import menu from "../../menu.svg";

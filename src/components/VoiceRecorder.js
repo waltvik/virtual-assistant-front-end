@@ -52,6 +52,9 @@ const VoiceRecorder = () => {
     return null;
   }
 
+  //<button onClick={SpeechRecognition.stopListening}>Stop</button>
+  //<button onClick={resetTranscript}>Reset</button>
+
   return (
     <div>
       <button
@@ -72,10 +75,17 @@ const VoiceRecorder = () => {
           alt="Mic"
         />
       </button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
-      <button onClick={resetTranscript}>Reset</button>
-      <p>you said: {transcript}</p>
-      <p>my response: {message}</p>
+    
+      <p style={{
+          position: "absolute",
+          top: "35%",
+          left: "20%",
+        }}>you said: {transcript}</p>
+      <p style={{
+          position: "absolute",
+          top: "40%",
+          left: "20%",
+        }}>my response: {message}</p>
     </div>
   );
 };

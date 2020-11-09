@@ -1,16 +1,22 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import MainPage from "./pages/main/MainPage";
+import { CookiesProvider } from "react-cookie";
+import Home from "./pages/home/Home";
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Route exact path="/" component={MainPage} />
-      </Router>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <CookiesProvider>
+        <Router>
+          <Switch>
+            <Route path="/" exact={true} component={Home} />
+          </Switch>
+        </Router>
+      </CookiesProvider>
+    );
+  }
 }
 
 export default App;
